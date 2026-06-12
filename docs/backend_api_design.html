@@ -1,0 +1,281 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);font-size:14px;color:var(--color-text-primary);line-height:1.6}
+.sec-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--color-text-secondary);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary);margin-top:24px}
+.sec-title:first-child{margin-top:0}
+
+.folder-tree{font-family:var(--font-mono);font-size:12px;background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:16px;line-height:2;border:0.5px solid var(--color-border-tertiary)}
+.f-dir{color:#185FA5;font-weight:500}
+.f-file{color:var(--color-text-primary)}
+.f-note{color:#888780;margin-left:8px}
+.f-indent1{padding-left:16px}
+.f-indent2{padding-left:32px}
+.f-indent3{padding-left:48px}
+
+.endpoint-group{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:10px}
+.eg-header{padding:10px 14px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}
+.ep-row{display:grid;grid-template-columns:60px 200px 1fr 80px;gap:10px;padding:10px 14px;border-bottom:0.5px solid var(--color-border-tertiary);align-items:start;font-size:12px}
+.ep-row:last-child{border-bottom:none}
+.method{font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;text-align:center;font-family:var(--font-mono)}
+.get{background:#EAF3DE;color:#27500A}
+.post{background:#E6F1FB;color:#0C447C}
+.del{background:#FCEBEB;color:#791F1F}
+.ep-path{font-family:var(--font-mono);font-weight:500;color:var(--color-text-primary)}
+.ep-desc{color:var(--color-text-secondary)}
+.auth-badge{font-size:10px;font-weight:500;padding:2px 6px;border-radius:99px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);text-align:center;white-space:nowrap}
+.ab-req{background:#FAEEDA;color:#633806;border-color:#EF9F27}
+
+.code-block{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-primary);line-height:1.8;white-space:pre-wrap;word-break:break-word;border:0.5px solid var(--color-border-tertiary);margin-bottom:10px}
+.kw{color:#185FA5}
+.str{color:#3B6D11}
+.num{color:#854F0B}
+.cmt{color:#888780}
+.fn{color:#7B3FA0}
+.dec{color:#854F0B}
+
+.flow-row{display:flex;align-items:center;gap:0;margin-bottom:8px}
+.flow-step{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 12px;font-size:12px;flex:1;text-align:center}
+.flow-step strong{display:block;font-size:11px;font-weight:500;margin-bottom:2px}
+.flow-step span{color:var(--color-text-secondary);font-size:11px}
+.flow-arrow{font-size:16px;color:var(--color-text-secondary);padding:0 4px;flex-shrink:0}
+
+.middleware-card{border-left:3px solid var(--color-border-secondary);padding:10px 14px;background:var(--color-background-secondary);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;margin-bottom:8px}
+.mw-title{font-size:13px;font-weight:500;margin-bottom:3px}
+.mw-desc{font-size:12px;color:var(--color-text-secondary)}
+.mbl{border-left-color:#185FA5}
+.mgl{border-left-color:#1D9E75}
+.mal{border-left-color:#EF9F27}
+.mrl{border-left-color:#E24B4A}
+</style>
+<div>
+
+<div class="sec-title">Folder structure</div>
+<div class="folder-tree">
+<span class="f-dir">backend/</span>
+<div class="f-indent1"><span class="f-dir">app/</span></div>
+<div class="f-indent2"><span class="f-file">main.py</span><span class="f-note"># FastAPI app entry point</span></div>
+<div class="f-indent2"><span class="f-file">config.py</span><span class="f-note"># env vars, settings</span></div>
+<div class="f-indent2"><span class="f-file">database.py</span><span class="f-note"># SQLAlchemy engine + session</span></div>
+<div class="f-indent2"><span class="f-dir">routers/</span></div>
+<div class="f-indent3"><span class="f-file">auth.py</span><span class="f-note"># login, register, JWT</span></div>
+<div class="f-indent3"><span class="f-file">analyses.py</span><span class="f-note"># upload + run analysis</span></div>
+<div class="f-indent3"><span class="f-file">findings.py</span><span class="f-note"># get findings per analysis</span></div>
+<div class="f-indent3"><span class="f-file">dashboard.py</span><span class="f-note"># stats + trends</span></div>
+<div class="f-indent2"><span class="f-dir">models/</span></div>
+<div class="f-indent3"><span class="f-file">organization.py</span></div>
+<div class="f-indent3"><span class="f-file">user.py</span></div>
+<div class="f-indent3"><span class="f-file">analysis.py</span></div>
+<div class="f-indent3"><span class="f-file">finding.py</span></div>
+<div class="f-indent2"><span class="f-dir">schemas/</span><span class="f-note"># Pydantic request/response models</span></div>
+<div class="f-indent3"><span class="f-file">auth.py</span></div>
+<div class="f-indent3"><span class="f-file">analysis.py</span></div>
+<div class="f-indent3"><span class="f-file">finding.py</span></div>
+<div class="f-indent2"><span class="f-dir">agent/</span><span class="f-note"># AI engine</span></div>
+<div class="f-indent3"><span class="f-file">analyzer.py</span><span class="f-note"># main orchestrator</span></div>
+<div class="f-indent3"><span class="f-file">classifier.py</span><span class="f-note"># change type detection</span></div>
+<div class="f-indent3"><span class="f-file">prompts.py</span><span class="f-note"># system prompt + templates</span></div>
+<div class="f-indent2"><span class="f-dir">engines/</span><span class="f-note"># scoring modules</span></div>
+<div class="f-indent3"><span class="f-file">risk_scorer.py</span></div>
+<div class="f-indent3"><span class="f-file">compliance_mapper.py</span></div>
+<div class="f-indent3"><span class="f-file">cost_calculator.py</span></div>
+<div class="f-indent2"><span class="f-dir">parsers/</span><span class="f-note"># file type parsers</span></div>
+<div class="f-indent3"><span class="f-file">terraform.py</span></div>
+<div class="f-indent3"><span class="f-file">git_diff.py</span></div>
+<div class="f-indent3"><span class="f-file">kubernetes.py</span></div>
+<div class="f-indent2"><span class="f-dir">middleware/</span></div>
+<div class="f-indent3"><span class="f-file">auth.py</span><span class="f-note"># JWT validation</span></div>
+<div class="f-indent3"><span class="f-file">logging.py</span><span class="f-note"># structured JSON logs</span></div>
+<div class="f-indent1"><span class="f-file">requirements.txt</span></div>
+<div class="f-indent1"><span class="f-file">Dockerfile</span></div>
+<div class="f-indent1"><span class="f-file">.env.example</span></div>
+</div>
+
+<div class="sec-title">API endpoints</div>
+
+<div class="endpoint-group">
+<div class="eg-header"><i class="ti ti-lock" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i>Auth</div>
+<div class="ep-row"><span class="method post">POST</span><span class="ep-path">/v1/auth/register</span><span class="ep-desc">Register new user + organization</span><span class="auth-badge">public</span></div>
+<div class="ep-row"><span class="method post">POST</span><span class="ep-path">/v1/auth/login</span><span class="ep-desc">Login — returns JWT access token</span><span class="auth-badge">public</span></div>
+<div class="ep-row"><span class="method post">POST</span><span class="ep-path">/v1/auth/refresh</span><span class="ep-desc">Refresh expired JWT token</span><span class="auth-badge ab-req">JWT</span></div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/v1/auth/me</span><span class="ep-desc">Get current user profile</span><span class="auth-badge ab-req">JWT</span></div>
+</div>
+
+<div class="endpoint-group">
+<div class="eg-header"><i class="ti ti-shield-check" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i>Analyses</div>
+<div class="ep-row"><span class="method post">POST</span><span class="ep-path">/v1/analyses</span><span class="ep-desc">Upload file + run full risk analysis. Returns complete report.</span><span class="auth-badge ab-req">JWT</span></div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/v1/analyses</span><span class="ep-desc">List all analyses for the org. Supports pagination + filters.</span><span class="auth-badge ab-req">JWT</span></div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/v1/analyses/{id}</span><span class="ep-desc">Get full analysis report by ID including findings + compliance</span><span class="auth-badge ab-req">JWT</span></div>
+<div class="ep-row"><span class="method del">DEL</span><span class="ep-path">/v1/analyses/{id}</span><span class="ep-desc">Delete analysis and all related findings</span><span class="auth-badge ab-req">JWT</span></div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/v1/analyses/{id}/export</span><span class="ep-desc">Export full report as PDF or JSON</span><span class="auth-badge ab-req">JWT</span></div>
+</div>
+
+<div class="endpoint-group">
+<div class="eg-header"><i class="ti ti-chart-bar" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i>Dashboard</div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/v1/dashboard/stats</span><span class="ep-desc">Summary stats: total, blocked, review, safe counts</span><span class="auth-badge ab-req">JWT</span></div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/v1/dashboard/trends</span><span class="ep-desc">Risk score trend data for chart (30/60/90 days)</span><span class="auth-badge ab-req">JWT</span></div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/v1/dashboard/findings</span><span class="ep-desc">Finding category breakdown counts</span><span class="auth-badge ab-req">JWT</span></div>
+</div>
+
+<div class="endpoint-group">
+<div class="eg-header"><i class="ti ti-heartbeat" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i>System</div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/health</span><span class="ep-desc">Health check — returns DB + AI connectivity status</span><span class="auth-badge">public</span></div>
+<div class="ep-row"><span class="method get">GET</span><span class="ep-path">/docs</span><span class="ep-desc">Auto-generated OpenAPI docs (FastAPI built-in)</span><span class="auth-badge">public</span></div>
+</div>
+
+<div class="sec-title">Analysis request flow</div>
+<div class="flow-row">
+  <div class="flow-step"><strong>1. Receive</strong><span>POST /v1/analyses<br>multipart file</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step"><strong>2. Validate</strong><span>File type, size<br>JWT auth</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step"><strong>3. Parse</strong><span>Extract resources<br>from file</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step"><strong>4. AI agent</strong><span>OpenAI call<br>structured JSON</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step"><strong>5. Score</strong><span>Risk engine<br>+ compliance</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step"><strong>6. Save + return</strong><span>Persist to DB<br>return report</span></div>
+</div>
+
+<div class="sec-title">Key code — main.py</div>
+<div class="code-block"><span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI
+<span class="kw">from</span> fastapi.middleware.cors <span class="kw">import</span> CORSMiddleware
+<span class="kw">from</span> app.routers <span class="kw">import</span> auth, analyses, dashboard
+<span class="kw">from</span> app.database <span class="kw">import</span> engine, Base
+
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI(
+    title=<span class="str">"AI Change Risk Agent"</span>,
+    version=<span class="str">"1.0.0"</span>,
+    description=<span class="str">"Prevent million-dollar outages before deployment"</span>
+)
+
+app.add_middleware(CORSMiddleware,
+    allow_origins=[<span class="str">"http://localhost:3000"</span>, <span class="str">"https://your-vercel-app.vercel.app"</span>],
+    allow_methods=[<span class="str">"*"</span>], allow_headers=[<span class="str">"*"</span>], allow_credentials=<span class="kw">True</span>
+)
+
+app.include_router(auth.router,      prefix=<span class="str">"/v1/auth"</span>,      tags=[<span class="str">"auth"</span>])
+app.include_router(analyses.router,  prefix=<span class="str">"/v1/analyses"</span>,  tags=[<span class="str">"analyses"</span>])
+app.include_router(dashboard.router, prefix=<span class="str">"/v1/dashboard"</span>, tags=[<span class="str">"dashboard"</span>])</div>
+
+<div class="sec-title">Key code — analyses router (core endpoint)</div>
+<div class="code-block"><span class="cmt"># routers/analyses.py</span>
+<span class="kw">from</span> fastapi <span class="kw">import</span> APIRouter, UploadFile, File, Depends, HTTPException
+<span class="kw">from</span> app.agent.analyzer <span class="kw">import</span> run_analysis
+<span class="kw">from</span> app.middleware.auth <span class="kw">import</span> get_current_user
+<span class="kw">from</span> app.database <span class="kw">import</span> get_db
+<span class="kw">from</span> app.models.analysis <span class="kw">import</span> Analysis
+<span class="kw">from</span> app.schemas.analysis <span class="kw">import</span> AnalysisResponse
+<span class="kw">import</span> uuid, time
+
+router = APIRouter()
+
+<span class="dec">@router.post</span>(<span class="str">""</span>, response_model=AnalysisResponse)
+<span class="kw">async def</span> <span class="fn">create_analysis</span>(
+    file: UploadFile = File(<span class="kw">None</span>),
+    content: str = <span class="kw">None</span>,          <span class="cmt"># pasted text alternative</span>
+    current_user = Depends(get_current_user),
+    db = Depends(get_db)
+):
+    <span class="kw">if not</span> file <span class="kw">and not</span> content:
+        <span class="kw">raise</span> HTTPException(<span class="num">400</span>, <span class="str">"Provide a file or pasted content"</span>)
+
+    start = time.time()
+    raw = <span class="kw">await</span> file.read() <span class="kw">if</span> file <span class="kw">else</span> content.encode()
+    file_text = raw.decode(<span class="str">"utf-8"</span>, errors=<span class="str">"ignore"</span>)
+
+    <span class="cmt"># Run full AI analysis pipeline</span>
+    result = <span class="kw">await</span> <span class="fn">run_analysis</span>(file_text, file.filename <span class="kw">if</span> file <span class="kw">else</span> <span class="str">"pasted_code"</span>)
+
+    <span class="cmt"># Persist to database</span>
+    analysis = Analysis(
+        id=uuid.uuid4(), org_id=current_user.org_id, user_id=current_user.id,
+        file_name=file.filename <span class="kw">if</span> file <span class="kw">else</span> <span class="str">"pasted_code"</span>,
+        risk_score=result[<span class="str">"risk_score"</span>], verdict=result[<span class="str">"verdict"</span>],
+        risk_level=result[<span class="str">"risk_level"</span>], status=<span class="str">"complete"</span>,
+        processing_ms=<span class="fn">int</span>((time.time()-start)*<span class="num">1000</span>)
+    )
+    db.add(analysis); db.commit(); db.refresh(analysis)
+    <span class="kw">return</span> result</div>
+
+<div class="sec-title">Key code — AI analyzer (agent orchestrator)</div>
+<div class="code-block"><span class="cmt"># agent/analyzer.py</span>
+<span class="kw">from</span> openai <span class="kw">import</span> AsyncOpenAI
+<span class="kw">from</span> app.agent.prompts <span class="kw">import</span> SYSTEM_PROMPT, build_user_prompt
+<span class="kw">from</span> app.engines.risk_scorer <span class="kw">import</span> compute_score
+<span class="kw">import</span> json
+
+client = AsyncOpenAI()  <span class="cmt"># reads OPENAI_API_KEY from env</span>
+
+RESPONSE_SCHEMA = {
+    <span class="str">"type"</span>: <span class="str">"json_schema"</span>,
+    <span class="str">"json_schema"</span>: {
+        <span class="str">"name"</span>: <span class="str">"risk_report"</span>, <span class="str">"strict"</span>: <span class="kw">True</span>,
+        <span class="str">"schema"</span>: {
+            <span class="str">"type"</span>: <span class="str">"object"</span>,
+            <span class="str">"properties"</span>: {
+                <span class="str">"risk_score"</span>:        {<span class="str">"type"</span>: <span class="str">"integer"</span>},
+                <span class="str">"risk_level"</span>:        {<span class="str">"type"</span>: <span class="str">"string"</span>},
+                <span class="str">"verdict"</span>:           {<span class="str">"type"</span>: <span class="str">"string"</span>},
+                <span class="str">"confidence"</span>:        {<span class="str">"type"</span>: <span class="str">"number"</span>},
+                <span class="str">"change_summary"</span>:    {<span class="str">"type"</span>: <span class="str">"string"</span>},
+                <span class="str">"findings"</span>:          {<span class="str">"type"</span>: <span class="str">"array"</span>},
+                <span class="str">"cost_impact"</span>:       {<span class="str">"type"</span>: <span class="str">"object"</span>},
+                <span class="str">"reasoning_summary"</span>: {<span class="str">"type"</span>: <span class="str">"string"</span>}
+            },
+            <span class="str">"required"</span>: [<span class="str">"risk_score"</span>,<span class="str">"risk_level"</span>,<span class="str">"verdict"</span>,<span class="str">"findings"</span>],
+            <span class="str">"additionalProperties"</span>: <span class="kw">False</span>
+        }
+    }
+}
+
+<span class="kw">async def</span> <span class="fn">run_analysis</span>(file_content: str, filename: str) -> dict:
+    response = <span class="kw">await</span> client.chat.completions.create(
+        model=<span class="str">"gpt-4o-mini"</span>,          <span class="cmt"># swap to gpt-4o for demo</span>
+        response_format=RESPONSE_SCHEMA,
+        messages=[
+            {<span class="str">"role"</span>: <span class="str">"system"</span>, <span class="str">"content"</span>: SYSTEM_PROMPT},
+            {<span class="str">"role"</span>: <span class="str">"user"</span>,   <span class="str">"content"</span>: <span class="fn">build_user_prompt</span>(file_content, filename)}
+        ],
+        max_tokens=<span class="num">2000</span>,
+        temperature=<span class="num">0.1</span>   <span class="cmt"># low temp = consistent, deterministic scoring</span>
+    )
+    <span class="kw">return</span> json.loads(response.choices[<span class="num">0</span>].message.content)</div>
+
+<div class="sec-title">Middleware stack</div>
+<div class="middleware-card mbl">
+  <div class="mw-title">JWT authentication</div>
+  <div class="mw-desc">Every protected route validates Bearer token. Extracts org_id and user_id for all DB queries. Returns 401 on missing/expired token.</div>
+</div>
+<div class="middleware-card mgl">
+  <div class="mw-title">CORS</div>
+  <div class="mw-desc">Allows requests from Vercel frontend domain and localhost:3000 for development. Rejects all other origins.</div>
+</div>
+<div class="middleware-card mal">
+  <div class="mw-title">Request logging</div>
+  <div class="mw-desc">Structured JSON logs every request: method, path, status, duration_ms, user_id. Sent to Railway built-in log drain.</div>
+</div>
+<div class="middleware-card mrl">
+  <div class="mw-title">Error handling</div>
+  <div class="mw-desc">Global exception handler returns consistent JSON: {"error": "message", "code": "ERROR_CODE"}. Never leaks stack traces to client.</div>
+</div>
+
+<div class="sec-title">Environment variables (.env.example)</div>
+<div class="code-block"><span class="cmt"># Database</span>
+DATABASE_URL=postgresql://user:password@host:5432/dbname
+
+<span class="cmt"># AI</span>
+OPENAI_API_KEY=sk-...
+
+<span class="cmt"># Auth</span>
+SECRET_KEY=your-secret-key-min-32-chars
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+
+<span class="cmt"># App</span>
+ENVIRONMENT=development
+CORS_ORIGINS=http://localhost:3000,https://your-app.vercel.app</div>
+
+</div>

@@ -1,0 +1,287 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:14px;line-height:1.6}
+.sec-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--color-text-secondary);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary);margin-top:24px}
+.sec-title:first-child{margin-top:0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+
+.stat-card{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px;text-align:center;border:0.5px solid var(--color-border-tertiary)}
+.stat-val{font-size:22px;font-weight:500;margin-bottom:2px}
+.stat-label{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.05em}
+
+.price-table{width:100%;border-collapse:collapse;font-size:12px}
+.price-table th{text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.price-table td{padding:9px 12px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:top;color:var(--color-text-secondary)}
+.price-table td:first-child{font-weight:500;color:var(--color-text-primary)}
+.price-table tr:last-child td{border-bottom:none}
+.mono{font-family:var(--font-mono);font-size:11px}
+
+.calc-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px}
+.calc-header{padding:10px 14px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;font-weight:500;display:flex;justify-content:space-between;align-items:center}
+.calc-body{padding:14px}
+.calc-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px}
+.calc-row:last-of-type{border-bottom:none}
+.calc-name{flex:1;color:var(--color-text-secondary)}
+.calc-formula{font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);flex:1.5}
+.calc-result{font-weight:500;color:var(--color-text-primary);min-width:70px;text-align:right}
+.calc-total{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)}
+.total-label{font-size:13px;font-weight:500}
+.total-val{font-size:22px;font-weight:500}
+.inc{color:#A32D2D}
+.dec{color:#3B6D11}
+.neu{color:#185FA5}
+
+.code-block{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-primary);line-height:1.8;white-space:pre-wrap;word-break:break-word;border:0.5px solid var(--color-border-tertiary)}
+.kw{color:#185FA5}
+.str{color:#3B6D11}
+.num{color:#854F0B}
+.cmt{color:#888780}
+.fn{color:#7B3FA0}
+
+.threshold-card{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px;border-left:3px solid var(--color-border-secondary)}
+.tl{border-left-color:#E24B4A}
+.tm{border-left-color:#EF9F27}
+.ts{border-left-color:#1D9E75}
+.threshold-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.threshold-title{font-size:13px;font-weight:500;margin-bottom:3px}
+.threshold-desc{font-size:12px;color:var(--color-text-secondary)}
+
+.badge{display:inline-flex;font-size:11px;font-weight:500;padding:2px 8px;border-radius:99px}
+.b-red{background:#FCEBEB;color:#791F1F}
+.b-amber{background:#FAEEDA;color:#633806}
+.b-green{background:#EAF3DE;color:#27500A}
+.b-blue{background:#E6F1FB;color:#0C447C}
+</style>
+<div>
+
+<div class="sec-title">What the FinOps engine does</div>
+<div class="three-col" style="margin-bottom:4px">
+  <div class="stat-card">
+    <div class="stat-val" style="color:#A32D2D">+$Δ</div>
+    <div class="stat-label">Detects cost increases</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val" style="color:#3B6D11">−$Δ</div>
+    <div class="stat-label">Detects cost savings</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val" style="color:#185FA5">$/mo</div>
+    <div class="stat-label">Monthly delta estimate</div>
+  </div>
+</div>
+
+<div class="sec-title">AWS pricing reference table (us-east-1, on-demand)</div>
+<table class="price-table">
+  <thead><tr><th>Resource</th><th>Type / Config</th><th>Monthly cost</th><th>Calculation basis</th></tr></thead>
+  <tbody>
+    <tr><td>EC2 — t3.micro</td><td>2 vCPU · 1GB RAM</td><td class="mono">$7.59/mo</td><td>$0.0104/hr × 730hrs</td></tr>
+    <tr><td>EC2 — t3.small</td><td>2 vCPU · 2GB RAM</td><td class="mono">$15.18/mo</td><td>$0.0208/hr × 730hrs</td></tr>
+    <tr><td>EC2 — t3.medium</td><td>2 vCPU · 4GB RAM</td><td class="mono">$30.37/mo</td><td>$0.0416/hr × 730hrs</td></tr>
+    <tr><td>EC2 — t3.large</td><td>2 vCPU · 8GB RAM</td><td class="mono">$60.74/mo</td><td>$0.0832/hr × 730hrs</td></tr>
+    <tr><td>EC2 — t3.xlarge</td><td>4 vCPU · 16GB RAM</td><td class="mono">$121.47/mo</td><td>$0.1664/hr × 730hrs</td></tr>
+    <tr><td>RDS — db.t3.medium</td><td>PostgreSQL · 2vCPU · 4GB</td><td class="mono">$56.94/mo</td><td>$0.078/hr × 730hrs</td></tr>
+    <tr><td>RDS — db.t3.large</td><td>PostgreSQL · 2vCPU · 8GB</td><td class="mono">$113.88/mo</td><td>$0.156/hr × 730hrs</td></tr>
+    <tr><td>RDS Multi-AZ premium</td><td>2× single-AZ cost</td><td class="mono">+100%</td><td>Standby replica cost</td></tr>
+    <tr><td>NAT Gateway</td><td>Per gateway</td><td class="mono">$32.85/mo</td><td>$0.045/hr × 730hrs</td></tr>
+    <tr><td>NAT Gateway data</td><td>Per GB processed</td><td class="mono">$0.045/GB</td><td>Usage-based</td></tr>
+    <tr><td>ALB</td><td>Per load balancer</td><td class="mono">$16.43/mo</td><td>$0.0225/hr × 730hrs</td></tr>
+    <tr><td>EBS — gp3</td><td>Per GB provisioned</td><td class="mono">$0.08/GB/mo</td><td>Storage-based</td></tr>
+    <tr><td>S3 Standard</td><td>Per GB stored</td><td class="mono">$0.023/GB/mo</td><td>Storage-based</td></tr>
+    <tr><td>ECS Fargate — vCPU</td><td>Per vCPU per hour</td><td class="mono">$0.04048/hr</td><td>Compute-based</td></tr>
+    <tr><td>ECS Fargate — memory</td><td>Per GB per hour</td><td class="mono">$0.004445/hr</td><td>Memory-based</td></tr>
+  </tbody>
+</table>
+
+<div class="sec-title">Cost calculation engine — core logic</div>
+<div class="code-block"><span class="cmt"># finops/calculator.py</span>
+
+<span class="cmt"># Pricing lookup table (us-east-1, on-demand)</span>
+EC2_PRICES = {
+    <span class="str">"t3.micro"</span>: <span class="num">0.0104</span>, <span class="str">"t3.small"</span>: <span class="num">0.0208</span>,
+    <span class="str">"t3.medium"</span>: <span class="num">0.0416</span>, <span class="str">"t3.large"</span>: <span class="num">0.0832</span>,
+    <span class="str">"t3.xlarge"</span>: <span class="num">0.1664</span>, <span class="str">"m5.large"</span>: <span class="num">0.096</span>,
+}
+RDS_PRICES = {
+    <span class="str">"db.t3.medium"</span>: <span class="num">0.078</span>, <span class="str">"db.t3.large"</span>: <span class="num">0.156</span>,
+    <span class="str">"db.r5.large"</span>: <span class="num">0.24</span>,
+}
+HOURS_PER_MONTH = <span class="num">730</span>
+
+<span class="kw">def</span> <span class="fn">estimate_ec2_cost</span>(instance_type: str, count: int = <span class="num">1</span>) -> float:
+    hourly = EC2_PRICES.get(instance_type, <span class="num">0</span>)
+    <span class="kw">return</span> hourly * HOURS_PER_MONTH * count
+
+<span class="kw">def</span> <span class="fn">estimate_rds_cost</span>(instance_class: str, multi_az: bool = <span class="kw">False</span>) -> float:
+    hourly = RDS_PRICES.get(instance_class, <span class="num">0</span>)
+    monthly = hourly * HOURS_PER_MONTH
+    <span class="kw">return</span> monthly * <span class="num">2</span> <span class="kw">if</span> multi_az <span class="kw">else</span> monthly
+
+<span class="kw">def</span> <span class="fn">calculate_cost_delta</span>(before: dict, after: dict) -> dict:
+    <span class="cmt"># Compare resource configs before and after change</span>
+    cost_before = <span class="fn">estimate_resource_cost</span>(before)
+    cost_after  = <span class="fn">estimate_resource_cost</span>(after)
+    delta = cost_after - cost_before
+    <span class="kw">return</span> {
+        <span class="str">"monthly_before_usd"</span>: cost_before,
+        <span class="str">"monthly_after_usd"</span>:  cost_after,
+        <span class="str">"monthly_delta_usd"</span>:  delta,
+        <span class="str">"annual_delta_usd"</span>:   delta * <span class="num">12</span>,
+        <span class="str">"direction"</span>: <span class="str">"increase"</span> <span class="kw">if</span> delta > <span class="num">0</span> <span class="kw">else</span> <span class="str">"decrease"</span> <span class="kw">if</span> delta < <span class="num">0</span> <span class="kw">else</span> <span class="str">"no_change"</span>
+    }</div>
+
+<div class="sec-title">Worked cost calculations</div>
+
+<div class="calc-card">
+  <div class="calc-header">
+    <span>Scenario A — EC2 instance type upgrade</span>
+    <span class="badge b-red">+$90.73/mo</span>
+  </div>
+  <div class="calc-body">
+    <div class="calc-row">
+      <div class="calc-name">Before: t3.medium (2 instances)</div>
+      <div class="calc-formula">$0.0416 × 730 × 2</div>
+      <div class="calc-result">$60.74/mo</div>
+    </div>
+    <div class="calc-row">
+      <div class="calc-name">After: t3.xlarge (2 instances)</div>
+      <div class="calc-formula">$0.1664 × 730 × 2</div>
+      <div class="calc-result">$242.94/mo</div>
+    </div>
+    <div class="calc-total">
+      <div>
+        <div class="total-label">Monthly cost increase</div>
+        <div style="font-size:12px;color:var(--color-text-secondary)">Annual impact: +$1,088.76</div>
+      </div>
+      <div class="total-val inc">+$182.20/mo</div>
+    </div>
+  </div>
+</div>
+
+<div class="calc-card">
+  <div class="calc-header">
+    <span>Scenario B — RDS upgrade + Multi-AZ enabled</span>
+    <span class="badge b-red">+$170.82/mo</span>
+  </div>
+  <div class="calc-body">
+    <div class="calc-row">
+      <div class="calc-name">Before: db.t3.medium, single-AZ</div>
+      <div class="calc-formula">$0.078 × 730</div>
+      <div class="calc-result">$56.94/mo</div>
+    </div>
+    <div class="calc-row">
+      <div class="calc-name">After: db.t3.large, Multi-AZ</div>
+      <div class="calc-formula">$0.156 × 730 × 2</div>
+      <div class="calc-result">$227.76/mo</div>
+    </div>
+    <div class="calc-total">
+      <div>
+        <div class="total-label">Monthly cost increase</div>
+        <div style="font-size:12px;color:var(--color-text-secondary)">Annual impact: +$2,049.84</div>
+      </div>
+      <div class="total-val inc">+$170.82/mo</div>
+    </div>
+  </div>
+</div>
+
+<div class="calc-card">
+  <div class="calc-header">
+    <span>Scenario C — New NAT Gateway added</span>
+    <span class="badge b-amber">+$32.85/mo base</span>
+  </div>
+  <div class="calc-body">
+    <div class="calc-row">
+      <div class="calc-name">NAT Gateway hourly charge</div>
+      <div class="calc-formula">$0.045 × 730</div>
+      <div class="calc-result">$32.85/mo</div>
+    </div>
+    <div class="calc-row">
+      <div class="calc-name">Data processing (est. 100GB/mo)</div>
+      <div class="calc-formula">$0.045 × 100GB</div>
+      <div class="calc-result">$4.50/mo</div>
+    </div>
+    <div class="calc-total">
+      <div>
+        <div class="total-label">Monthly cost increase</div>
+        <div style="font-size:12px;color:var(--color-text-secondary)">Annual impact: +$447.00 (excl. data)</div>
+      </div>
+      <div class="total-val inc">+$37.35/mo</div>
+    </div>
+  </div>
+</div>
+
+<div class="calc-card">
+  <div class="calc-header">
+    <span>Scenario D — RDS Multi-AZ removed (cost saving)</span>
+    <span class="badge b-green">−$56.94/mo</span>
+  </div>
+  <div class="calc-body">
+    <div class="calc-row">
+      <div class="calc-name">Before: db.t3.medium, Multi-AZ</div>
+      <div class="calc-formula">$0.078 × 730 × 2</div>
+      <div class="calc-result">$113.88/mo</div>
+    </div>
+    <div class="calc-row">
+      <div class="calc-name">After: db.t3.medium, single-AZ</div>
+      <div class="calc-formula">$0.078 × 730</div>
+      <div class="calc-result">$56.94/mo</div>
+    </div>
+    <div class="calc-total">
+      <div>
+        <div class="total-label">Monthly cost saving</div>
+        <div style="font-size:12px;color:#A32D2D">⚠ Availability risk: AVAIL-001 HIGH also triggered</div>
+      </div>
+      <div class="total-val dec">−$56.94/mo</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-title">Cost alert thresholds</div>
+<div class="threshold-card tl">
+  <div>
+    <div class="threshold-title">🚨 High cost alert — delta &gt; $500/mo</div>
+    <div class="threshold-desc">Flags change for mandatory FinOps review. Added to risk report as HIGH cost finding. Engineering manager notified. Contributes +15 points to risk score.</div>
+  </div>
+</div>
+<div class="threshold-card tm">
+  <div>
+    <div class="threshold-title">⚠ Medium cost alert — delta $100–$500/mo</div>
+    <div class="threshold-desc">Informational warning in risk report. Recommends FinOps team review before deployment. Contributes +5 points to risk score.</div>
+  </div>
+</div>
+<div class="threshold-card ts">
+  <div>
+    <div class="threshold-title">✓ Low cost impact — delta &lt; $100/mo</div>
+    <div class="threshold-desc">Reported in cost breakdown section only. No score contribution. Informational for FinOps awareness.</div>
+  </div>
+</div>
+
+<div class="sec-title">Cost impact summary — what appears in the risk report</div>
+<div class="code-block"><span class="cmt">// Example cost_impact block in the final JSON report</span>
+{
+  <span class="str">"cost_impact"</span>: {
+    <span class="str">"monthly_delta_usd"</span>: <span class="num">+253.17</span>,
+    <span class="str">"annual_delta_usd"</span>:  <span class="num">+3038.04</span>,
+    <span class="str">"alert_level"</span>:       <span class="str">"MEDIUM"</span>,
+    <span class="str">"breakdown"</span>: [
+      {
+        <span class="str">"resource"</span>:   <span class="str">"aws_instance.app"</span>,
+        <span class="str">"change"</span>:     <span class="str">"t3.medium × 2 → t3.xlarge × 2"</span>,
+        <span class="str">"delta_usd"</span>:  <span class="num">+182.20</span>
+      },
+      {
+        <span class="str">"resource"</span>:   <span class="str">"aws_db_instance.main"</span>,
+        <span class="str">"change"</span>:     <span class="str">"single-AZ → Multi-AZ"</span>,
+        <span class="str">"delta_usd"</span>:  <span class="num">+56.94</span>
+      },
+      {
+        <span class="str">"resource"</span>:   <span class="str">"aws_nat_gateway.main"</span>,
+        <span class="str">"change"</span>:     <span class="str">"new resource added"</span>,
+        <span class="str">"delta_usd"</span>:  <span class="num">+14.03</span>
+      }
+    ]
+  }
+}</div>
+
+</div>

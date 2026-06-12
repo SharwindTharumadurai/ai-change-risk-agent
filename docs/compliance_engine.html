@@ -1,0 +1,268 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:14px;line-height:1.6}
+.sec-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--color-text-secondary);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary);margin-top:24px}
+.sec-title:first-child{margin-top:0}
+
+.framework-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px}
+.fw-card{border-radius:var(--border-radius-lg);padding:14px;border:0.5px solid var(--color-border-tertiary)}
+.fw-badge{display:inline-flex;font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px;margin-bottom:8px}
+.fw-title{font-size:14px;font-weight:500;margin-bottom:4px}
+.fw-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.fw-count{font-size:11px;margin-top:8px;font-weight:500}
+
+.b-cis{background:#E6F1FB;color:#0C447C}
+.b-soc{background:#EAF3DE;color:#27500A}
+.b-iso{background:#FAEEDA;color:#633806}
+
+.map-table{width:100%;border-collapse:collapse;font-size:12px}
+.map-table th{text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.map-table td{padding:9px 12px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:top;color:var(--color-text-secondary)}
+.map-table td:first-child{font-weight:500;color:var(--color-text-primary);width:28%}
+.map-table tr:last-child td{border-bottom:none}
+.ctrl{display:inline-flex;font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;margin:2px;white-space:nowrap}
+.cc{background:#E6F1FB;color:#0C447C}
+.cs{background:#EAF3DE;color:#27500A}
+.ci{background:#FAEEDA;color:#633806}
+
+.sev{display:inline-flex;font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.sc{background:#FCEBEB;color:#791F1F}
+.sh{background:#FAEEDA;color:#633806}
+.sm{background:#E6F1FB;color:#0C447C}
+.sl{background:#EAF3DE;color:#27500A}
+
+.detect-card{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:8px;border-left:3px solid var(--color-border-secondary)}
+.detect-card.dc{border-left-color:#E24B4A}
+.detect-card.dh{border-left-color:#EF9F27}
+.detect-card.dm{border-left-color:#378ADD}
+.detect-title{font-size:13px;font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.detect-logic{font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);background:var(--color-background-primary);border-radius:var(--border-radius-sm);padding:8px 12px;margin-top:8px;border:0.5px solid var(--color-border-tertiary);line-height:1.8}
+.kw{color:#185FA5}
+.str{color:#3B6D11}
+.cmt{color:#888780}
+
+.report-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px}
+.rc-header{padding:10px 14px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;font-weight:500;display:flex;justify-content:space-between;align-items:center}
+.rc-body{padding:14px}
+.rc-row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px}
+.rc-row:last-child{border-bottom:none}
+.rc-status{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;margin-top:1px}
+.pass{background:#EAF3DE;color:#27500A}
+.fail{background:#FCEBEB;color:#791F1F}
+.warn{background:#FAEEDA;color:#633806}
+.rc-control{min-width:80px;font-weight:500;color:var(--color-text-primary)}
+.rc-desc{flex:1;color:var(--color-text-secondary)}
+</style>
+<div>
+
+<div class="sec-title">Supported frameworks</div>
+<div class="framework-grid">
+  <div class="fw-card">
+    <div class="fw-badge b-cis">CIS</div>
+    <div class="fw-title">CIS AWS Foundations</div>
+    <div class="fw-desc">Industry benchmark for AWS security configuration. Covers IAM, logging, networking, and monitoring controls.</div>
+    <div class="fw-count" style="color:#0C447C">14 controls mapped in MVP</div>
+  </div>
+  <div class="fw-card">
+    <div class="fw-badge b-soc">SOC2</div>
+    <div class="fw-title">SOC2 Type II</div>
+    <div class="fw-desc">Trust Service Criteria for SaaS and cloud companies. Required by most enterprise customers before vendor approval.</div>
+    <div class="fw-count" style="color:#27500A">8 criteria mapped in MVP</div>
+  </div>
+  <div class="fw-card">
+    <div class="fw-badge b-iso">ISO 27001</div>
+    <div class="fw-title">ISO 27001 Annex A</div>
+    <div class="fw-desc">International information security standard. Required for EU enterprise customers and government contracts.</div>
+    <div class="fw-count" style="color:#633806">10 controls mapped in MVP</div>
+  </div>
+</div>
+
+<div class="sec-title">Control mapping — finding → framework controls</div>
+<table class="map-table">
+  <thead><tr><th>Finding</th><th>Severity</th><th>CIS</th><th>SOC2</th><th>ISO 27001</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>SSH/RDP open to 0.0.0.0/0</td>
+      <td><span class="sev sc">CRITICAL</span></td>
+      <td><span class="ctrl cc">5.2</span></td>
+      <td><span class="ctrl cs">CC6.1</span><span class="ctrl cs">CC6.6</span></td>
+      <td><span class="ctrl ci">A.13.1.1</span></td>
+    </tr>
+    <tr>
+      <td>IAM wildcard action + resource</td>
+      <td><span class="sev sc">CRITICAL</span></td>
+      <td><span class="ctrl cc">1.16</span><span class="ctrl cc">1.17</span></td>
+      <td><span class="ctrl cs">CC6.3</span></td>
+      <td><span class="ctrl ci">A.9.2.3</span><span class="ctrl ci">A.9.4.1</span></td>
+    </tr>
+    <tr>
+      <td>S3 bucket public access</td>
+      <td><span class="sev sc">CRITICAL</span></td>
+      <td><span class="ctrl cc">2.1.5</span></td>
+      <td><span class="ctrl cs">CC6.1</span><span class="ctrl cs">CC7.2</span></td>
+      <td><span class="ctrl ci">A.13.2.1</span></td>
+    </tr>
+    <tr>
+      <td>Database encryption disabled</td>
+      <td><span class="sev sc">CRITICAL</span></td>
+      <td><span class="ctrl cc">2.3.1</span></td>
+      <td><span class="ctrl cs">CC6.1</span></td>
+      <td><span class="ctrl ci">A.10.1.1</span></td>
+    </tr>
+    <tr>
+      <td>Hardcoded secret detected</td>
+      <td><span class="sev sc">CRITICAL</span></td>
+      <td><span class="ctrl cc">1.11</span></td>
+      <td><span class="ctrl cs">CC6.1</span><span class="ctrl cs">CC6.3</span></td>
+      <td><span class="ctrl ci">A.9.4.3</span></td>
+    </tr>
+    <tr>
+      <td>RDS Multi-AZ removed</td>
+      <td><span class="sev sh">HIGH</span></td>
+      <td>—</td>
+      <td><span class="ctrl cs">A1.2</span></td>
+      <td><span class="ctrl ci">A.17.1.2</span></td>
+    </tr>
+    <tr>
+      <td>deletion_protection disabled</td>
+      <td><span class="sev sh">HIGH</span></td>
+      <td>—</td>
+      <td><span class="ctrl cs">A1.2</span></td>
+      <td><span class="ctrl ci">A.17.1.1</span></td>
+    </tr>
+    <tr>
+      <td>CloudTrail logging disabled</td>
+      <td><span class="sev sm">MEDIUM</span></td>
+      <td><span class="ctrl cc">3.1</span><span class="ctrl cc">3.2</span></td>
+      <td><span class="ctrl cs">CC7.2</span></td>
+      <td><span class="ctrl ci">A.12.4.1</span></td>
+    </tr>
+    <tr>
+      <td>VPC Flow Logs disabled</td>
+      <td><span class="sev sm">MEDIUM</span></td>
+      <td><span class="ctrl cc">3.9</span></td>
+      <td><span class="ctrl cs">CC7.2</span></td>
+      <td><span class="ctrl ci">A.12.4.1</span></td>
+    </tr>
+    <tr>
+      <td>EBS encryption disabled</td>
+      <td><span class="sev sm">MEDIUM</span></td>
+      <td><span class="ctrl cc">2.2.1</span></td>
+      <td><span class="ctrl cs">CC6.1</span></td>
+      <td><span class="ctrl ci">A.10.1.1</span></td>
+    </tr>
+    <tr>
+      <td>MFA not enforced on IAM</td>
+      <td><span class="sev sm">MEDIUM</span></td>
+      <td><span class="ctrl cc">1.10</span><span class="ctrl cc">1.11</span></td>
+      <td><span class="ctrl cs">CC6.1</span></td>
+      <td><span class="ctrl ci">A.9.4.2</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="sec-title">Detection logic — how the engine finds violations</div>
+
+<div class="detect-card dc">
+  <div class="detect-title"><span class="sev sc">CRITICAL</span> Public S3 bucket detection</div>
+  <div class="detect-logic"><span class="kw">def</span> check_s3_public_access(resource):
+    <span class="cmt"># Check ACL</span>
+    <span class="kw">if</span> resource.get(<span class="str">"acl"</span>) <span class="kw">in</span> [<span class="str">"public-read"</span>, <span class="str">"public-read-write"</span>]:
+        <span class="kw">return</span> finding(severity=<span class="str">"CRITICAL"</span>, points=40, control=<span class="str">"CIS-2.1.5"</span>)
+    <span class="cmt"># Check block_public_access settings</span>
+    bpa = resource.get(<span class="str">"block_public_acls"</span>, <span class="kw">True</span>)
+    <span class="kw">if not</span> bpa:
+        <span class="kw">return</span> finding(severity=<span class="str">"CRITICAL"</span>, points=40, control=<span class="str">"CIS-2.1.5"</span>)</div>
+</div>
+
+<div class="detect-card dc">
+  <div class="detect-title"><span class="sev sc">CRITICAL</span> IAM wildcard permissions detection</div>
+  <div class="detect-logic"><span class="kw">def</span> check_iam_wildcards(policy_document):
+    <span class="kw">for</span> statement <span class="kw">in</span> policy_document.get(<span class="str">"Statement"</span>, []):
+        actions = statement.get(<span class="str">"Action"</span>, [])
+        resources = statement.get(<span class="str">"Resource"</span>, [])
+        effect = statement.get(<span class="str">"Effect"</span>, <span class="str">""</span>)
+        <span class="kw">if</span> effect == <span class="str">"Allow"</span>:
+            <span class="kw">if</span> <span class="str">"*"</span> <span class="kw">in</span> actions <span class="kw">and</span> <span class="str">"*"</span> <span class="kw">in</span> resources:
+                <span class="kw">return</span> finding(severity=<span class="str">"CRITICAL"</span>, points=45) <span class="cmt"># full admin</span>
+            <span class="kw">elif</span> <span class="str">"*"</span> <span class="kw">in</span> actions:
+                <span class="kw">return</span> finding(severity=<span class="str">"HIGH"</span>, points=25) <span class="cmt"># wildcard action only</span></div>
+</div>
+
+<div class="detect-card dh">
+  <div class="detect-title"><span class="sev sh">HIGH</span> Open security group detection</div>
+  <div class="detect-logic"><span class="kw">def</span> check_open_ports(security_group):
+    dangerous_ports = {<span class="num">22</span>: <span class="str">"SSH"</span>, <span class="num">3389</span>: <span class="str">"RDP"</span>, <span class="num">3306</span>: <span class="str">"MySQL"</span>, <span class="num">5432</span>: <span class="str">"PostgreSQL"</span>}
+    <span class="kw">for</span> rule <span class="kw">in</span> security_group.get(<span class="str">"ingress"</span>, []):
+        cidrs = rule.get(<span class="str">"cidr_blocks"</span>, [])
+        port = rule.get(<span class="str">"from_port"</span>)
+        <span class="kw">if</span> <span class="str">"0.0.0.0/0"</span> <span class="kw">in</span> cidrs <span class="kw">or</span> <span class="str">"::/0"</span> <span class="kw">in</span> cidrs:
+            <span class="kw">if</span> port <span class="kw">in</span> dangerous_ports:
+                <span class="kw">return</span> finding(severity=<span class="str">"CRITICAL"</span>, points=40, port=dangerous_ports[port])
+            <span class="kw">elif</span> port == <span class="num">-1</span>: <span class="cmt"># all traffic</span>
+                <span class="kw">return</span> finding(severity=<span class="str">"HIGH"</span>, points=30)</div>
+</div>
+
+<div class="detect-card dm">
+  <div class="detect-title"><span class="sev sm">MEDIUM</span> Encryption checks</div>
+  <div class="detect-logic"><span class="kw">def</span> check_encryption(resource, resource_type):
+    <span class="kw">if</span> resource_type == <span class="str">"aws_db_instance"</span>:
+        <span class="kw">if not</span> resource.get(<span class="str">"storage_encrypted"</span>, <span class="kw">False</span>):
+            <span class="kw">return</span> finding(severity=<span class="str">"CRITICAL"</span>, points=40, control=<span class="str">"CIS-2.3.1"</span>)
+    <span class="kw">elif</span> resource_type == <span class="str">"aws_ebs_volume"</span>:
+        <span class="kw">if not</span> resource.get(<span class="str">"encrypted"</span>, <span class="kw">False</span>):
+            <span class="kw">return</span> finding(severity=<span class="str">"MEDIUM"</span>, points=15, control=<span class="str">"CIS-2.2.1"</span>)</div>
+</div>
+
+<div class="sec-title">Sample compliance report output</div>
+<div class="report-card">
+  <div class="rc-header">
+    <span>CIS AWS Foundations — Change analysis report</span>
+    <span style="font-size:12px;color:#A32D2D;font-weight:500">3 FAIL · 1 WARN · 4 PASS</span>
+  </div>
+  <div class="rc-body">
+    <div class="rc-row">
+      <div class="rc-status fail">✗</div>
+      <div class="rc-control">CIS 1.16</div>
+      <div class="rc-desc">Ensure IAM policies that allow full administrative privileges are not attached — FAIL: aws_iam_policy.app uses Action:* Resource:*</div>
+    </div>
+    <div class="rc-row">
+      <div class="rc-status fail">✗</div>
+      <div class="rc-control">CIS 5.2</div>
+      <div class="rc-desc">Ensure no security groups allow ingress from 0.0.0.0/0 to port 22 — FAIL: aws_security_group.web allows SSH from anywhere</div>
+    </div>
+    <div class="rc-row">
+      <div class="rc-status fail">✗</div>
+      <div class="rc-control">CIS 2.3.1</div>
+      <div class="rc-desc">Ensure that encryption is enabled for RDS instances — FAIL: aws_db_instance.main has storage_encrypted = false</div>
+    </div>
+    <div class="rc-row">
+      <div class="rc-status warn">!</div>
+      <div class="rc-control">CIS 3.1</div>
+      <div class="rc-desc">Ensure CloudTrail is enabled in all regions — WARN: No CloudTrail resource present in this change set</div>
+    </div>
+    <div class="rc-row">
+      <div class="rc-status pass">✓</div>
+      <div class="rc-control">CIS 2.1.5</div>
+      <div class="rc-desc">Ensure S3 bucket public access is blocked — PASS: All S3 resources have block_public_access enabled</div>
+    </div>
+    <div class="rc-row">
+      <div class="rc-status pass">✓</div>
+      <div class="rc-control">CIS 2.2.1</div>
+      <div class="rc-desc">Ensure EBS volumes are encrypted — PASS: aws_ebs_volume.data has encrypted = true</div>
+    </div>
+    <div class="rc-row">
+      <div class="rc-status pass">✓</div>
+      <div class="rc-control">CIS 1.10</div>
+      <div class="rc-desc">Ensure MFA is enabled for IAM console access — PASS: No IAM user changes detected in this change set</div>
+    </div>
+    <div class="rc-row">
+      <div class="rc-status pass">✓</div>
+      <div class="rc-control">CIS 3.9</div>
+      <div class="rc-desc">Ensure VPC Flow Logs are enabled — PASS: No VPC changes detected in this change set</div>
+    </div>
+  </div>
+</div>
+
+</div>

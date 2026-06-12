@@ -1,0 +1,489 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);font-size:14px;color:var(--color-text-primary);line-height:1.6}
+.sec-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--color-text-secondary);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary);margin-top:24px}
+.sec-title:first-child{margin-top:0}
+
+.day-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px}
+.day-header{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--color-border-tertiary)}
+.day-title{font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px}
+.day-badge{font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px}
+.day-hours{font-size:12px;color:var(--color-text-secondary)}
+.day-focus{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.day-body{padding:14px 16px}
+
+.task-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.task-row:last-child{border-bottom:none}
+.task-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;margin-top:1px}
+.task-body{flex:1}
+.task-title{font-size:13px;font-weight:500;margin-bottom:2px}
+.task-detail{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.task-hrs{font-size:12px;font-weight:500;color:var(--color-text-secondary);white-space:nowrap;min-width:50px;text-align:right}
+
+.deliverable-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12px}
+.del-icon{font-size:14px;color:#3B6D11}
+.del-text{color:var(--color-text-secondary)}
+
+.d1{background:#E6F1FB;color:#0C447C}
+.d2{background:#EAF3DE;color:#27500A}
+.d3{background:#FAEEDA;color:#633806}
+.d4{background:#EEEDFE;color:#3C3489}
+.d5{background:#E1F5EE;color:#085041}
+.d6{background:#FCEBEB;color:#791F1F}
+.d65{background:#F1EFE8;color:#444441}
+
+.n1{background:#E6F1FB;color:#0C447C}
+.n2{background:#EAF3DE;color:#27500A}
+.n3{background:#FAEEDA;color:#633806}
+.n4{background:#EEEDFE;color:#3C3489}
+.n5{background:#E1F5EE;color:#085041}
+.n6{background:#FCEBEB;color:#791F1F}
+
+.warning-card{background:#FAEEDA;border:0.5px solid #EF9F27;border-radius:var(--border-radius-md);padding:12px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start}
+.warning-text{font-size:12px;color:#633806;line-height:1.6}
+
+.progress-bar{height:8px;background:var(--color-border-tertiary);border-radius:99px;margin-bottom:4px;overflow:hidden}
+.pb-fill{height:8px;border-radius:99px}
+.progress-label{display:flex;justify-content:space-between;font-size:11px;color:var(--color-text-secondary);margin-bottom:12px}
+
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:4px}
+.sum-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px;text-align:center}
+.sum-val{font-size:22px;font-weight:500;margin-bottom:2px}
+.sum-label{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.05em}
+</style>
+<div>
+
+<div class="sec-title">Schedule overview</div>
+<div class="summary-grid">
+  <div class="sum-card"><div class="sum-val">6.5</div><div class="sum-label">Total days</div></div>
+  <div class="sum-card"><div class="sum-val" style="color:#185FA5">~52h</div><div class="sum-label">Est. hours</div></div>
+  <div class="sum-card"><div class="sum-val" style="color:#3B6D11">8h</div><div class="sum-label">Per day</div></div>
+  <div class="sum-card"><div class="sum-val" style="color:#854F0B">Day 4</div><div class="sum-label">Working MVP</div></div>
+</div>
+
+<div class="warning-card" style="margin-top:16px">
+  <i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:18px;color:#854F0B;flex-shrink:0"></i>
+  <div class="warning-text"><strong style="color:#633806">Golden rule:</strong> A working demo beats a perfect codebase. If you fall behind, cut features — never cut the demo flow. The upload → analyze → results pipeline must work on day 4 no matter what.</div>
+</div>
+
+<div class="sec-title">Day-by-day plan</div>
+
+<!-- Day 1 -->
+<div class="day-card">
+  <div class="day-header" style="background:#E6F1FB">
+    <div>
+      <div class="day-title"><span class="day-badge d1">Day 1</span>Backend foundation</div>
+      <div class="day-focus">Project setup · database · auth · file upload</div>
+    </div>
+    <div class="day-hours">~8 hours</div>
+  </div>
+  <div class="day-body">
+    <div class="task-row">
+      <div class="task-num n1">1</div>
+      <div class="task-body">
+        <div class="task-title">Project scaffolding</div>
+        <div class="task-detail">Create GitHub repo. Set up backend/ folder structure exactly as designed in Phase 9. Create all empty files. Install requirements.txt locally.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n1">2</div>
+      <div class="task-body">
+        <div class="task-title">Supabase + database setup</div>
+        <div class="task-detail">Create Supabase project. Run schema.sql in the SQL editor. Verify all 6 tables created. Copy DATABASE_URL to .env file.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n1">3</div>
+      <div class="task-body">
+        <div class="task-title">FastAPI app + database connection</div>
+        <div class="task-detail">Write main.py, config.py, database.py. SQLAlchemy engine connects to Supabase. Run uvicorn and confirm /health returns 200.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n1">4</div>
+      <div class="task-body">
+        <div class="task-title">SQLAlchemy models</div>
+        <div class="task-detail">Write models for Organization, User, Analysis, Finding, ComplianceResult, CostImpact. Mirror schema.sql exactly.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n1">5</div>
+      <div class="task-body">
+        <div class="task-title">Auth endpoints</div>
+        <div class="task-detail">POST /v1/auth/register, POST /v1/auth/login returning JWT, GET /v1/auth/me. JWT middleware on protected routes. Test with curl or Postman.</div>
+      </div>
+      <div class="task-hrs">2h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n1">6</div>
+      <div class="task-body">
+        <div class="task-title">File upload endpoint (stub)</div>
+        <div class="task-detail">POST /v1/analyses accepts file upload, reads content, returns placeholder JSON. No AI yet — just confirm file arrives at backend.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);margin-bottom:6px">Day 1 deliverables</div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">FastAPI running locally on port 8000</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Supabase database with all 6 tables</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Register + login working with JWT</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">File upload endpoint accepts files</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 2 -->
+<div class="day-card">
+  <div class="day-header" style="background:#EAF3DE">
+    <div>
+      <div class="day-title"><span class="day-badge d2">Day 2</span>AI agent engine</div>
+      <div class="day-focus">OpenAI integration · prompts · structured output · risk scoring</div>
+    </div>
+    <div class="day-hours">~8 hours</div>
+  </div>
+  <div class="day-body">
+    <div class="task-row">
+      <div class="task-num n2">1</div>
+      <div class="task-body">
+        <div class="task-title">System prompt + user prompt</div>
+        <div class="task-detail">Write prompts.py with SYSTEM_PROMPT (from Phase 3) and build_user_prompt() function. Test prompt manually in OpenAI playground first.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n2">2</div>
+      <div class="task-body">
+        <div class="task-title">OpenAI structured output call</div>
+        <div class="task-detail">Write agent/analyzer.py. Connect to OpenAI API with JSON schema enforcement. Test with the 4 demo Terraform examples from Phase 3. Confirm structured JSON returns correctly.</div>
+      </div>
+      <div class="task-hrs">2h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n2">3</div>
+      <div class="task-body">
+        <div class="task-title">Risk scoring engine</div>
+        <div class="task-detail">Write engines/risk_scorer.py. Implement weighted scoring formula from Phase 4. Apply verdict override rules (CRITICAL → always BLOCK). Unit test with mock findings.</div>
+      </div>
+      <div class="task-hrs">2h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n2">4</div>
+      <div class="task-body">
+        <div class="task-title">Compliance mapper</div>
+        <div class="task-detail">Write engines/compliance_mapper.py. Hardcode CIS/SOC2/ISO control mapping table from Phase 5. Map AI findings to control IDs.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n2">5</div>
+      <div class="task-body">
+        <div class="task-title">Cost calculator</div>
+        <div class="task-detail">Write engines/cost_calculator.py. Hardcode AWS pricing table from Phase 6. Detect EC2/RDS/NAT changes and compute monthly delta.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);margin-bottom:6px">Day 2 deliverables</div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">POST /v1/analyses returns real AI risk report</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">All 4 demo Terraform files score correctly</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Findings saved to database</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Compliance controls mapped per finding</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 3 -->
+<div class="day-card">
+  <div class="day-header" style="background:#FAEEDA">
+    <div>
+      <div class="day-title"><span class="day-badge d3">Day 3</span>Frontend — core pages</div>
+      <div class="day-focus">Next.js setup · upload page · results page</div>
+    </div>
+    <div class="day-hours">~8 hours</div>
+  </div>
+  <div class="day-body">
+    <div class="task-row">
+      <div class="task-num n3">1</div>
+      <div class="task-body">
+        <div class="task-title">Next.js project setup</div>
+        <div class="task-detail">npx create-next-app frontend --typescript --tailwind. Set up folder structure: app/, components/, lib/api.ts. Configure Tailwind. Connect to backend via NEXT_PUBLIC_API_URL env var.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n3">2</div>
+      <div class="task-body">
+        <div class="task-title">API client + auth</div>
+        <div class="task-detail">Write lib/api.ts with typed fetch wrappers for all backend endpoints. Store JWT in localStorage. Add auth context with login/logout. Protect routes.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n3">3</div>
+      <div class="task-body">
+        <div class="task-title">Login + register pages</div>
+        <div class="task-detail">Simple login form at /login. Register at /register. On success redirect to /dashboard. Match mockup from Phase 8.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n3">4</div>
+      <div class="task-body">
+        <div class="task-title">Upload page</div>
+        <div class="task-detail">Build /analyze page. File drag-and-drop zone + paste textarea. Analysis options. Submit calls POST /v1/analyses. Show loading spinner during analysis. Redirect to results on completion.</div>
+      </div>
+      <div class="task-hrs">2.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n3">5</div>
+      <div class="task-body">
+        <div class="task-title">Results page — verdict + score</div>
+        <div class="task-detail">Build /results/[id] page. Verdict banner (BLOCK/REVIEW/SAFE). Score grid (overall, security, availability, cost). Wire to GET /v1/analyses/{id}.</div>
+      </div>
+      <div class="task-hrs">2h</div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);margin-bottom:6px">Day 3 deliverables</div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Full upload → analysis → results flow working end-to-end</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Verdict banner and score cards rendering</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Login and auth flow working</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 4 -->
+<div class="day-card">
+  <div class="day-header" style="background:#EEEDFE">
+    <div>
+      <div class="day-title"><span class="day-badge d4">Day 4</span>Frontend — findings + dashboard</div>
+      <div class="day-focus">Findings list · compliance table · cost breakdown · dashboard</div>
+    </div>
+    <div class="day-hours">~8 hours</div>
+  </div>
+  <div class="day-body">
+    <div class="task-row">
+      <div class="task-num n4">1</div>
+      <div class="task-body">
+        <div class="task-title">Findings list component</div>
+        <div class="task-detail">Build FindingCard component. Severity dot, title, resource name, evidence, explanation, remediation. Group by severity: CRITICAL first. Wire to findings array from API.</div>
+      </div>
+      <div class="task-hrs">2h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n4">2</div>
+      <div class="task-body">
+        <div class="task-title">Compliance results table</div>
+        <div class="task-detail">Build ComplianceTable component. PASS/FAIL/WARN status per control. Group by framework (CIS / SOC2 / ISO). Match the mockup from Phase 8.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n4">3</div>
+      <div class="task-body">
+        <div class="task-title">Cost impact breakdown</div>
+        <div class="task-detail">Build CostImpact component. Line items with resource name, change description, delta. Monthly + annual totals. Green for savings, red for increases.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n4">4</div>
+      <div class="task-body">
+        <div class="task-title">Dashboard page</div>
+        <div class="task-detail">Build /dashboard. Summary stat cards (total, blocked, review, safe). Recent analyses list. Finding category bars. Wire to /v1/dashboard/stats and /v1/dashboard/trends.</div>
+      </div>
+      <div class="task-hrs">2.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n4">5</div>
+      <div class="task-body">
+        <div class="task-title">Navigation + layout</div>
+        <div class="task-detail">Shared nav bar across all pages. Active state. Mobile-friendly. Logout button clears JWT.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);margin-bottom:6px">Day 4 deliverables — working MVP</div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Complete results page: verdict + score + findings + compliance + cost</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Dashboard showing stats and recent analyses</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Full demo flow works end-to-end</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 5 -->
+<div class="day-card">
+  <div class="day-header" style="background:#E1F5EE">
+    <div>
+      <div class="day-title"><span class="day-badge d5">Day 5</span>Polish + deployment</div>
+      <div class="day-focus">UI polish · Vercel deploy · Railway deploy · Supabase connect</div>
+    </div>
+    <div class="day-hours">~8 hours</div>
+  </div>
+  <div class="day-body">
+    <div class="task-row">
+      <div class="task-num n5">1</div>
+      <div class="task-body">
+        <div class="task-title">UI polish</div>
+        <div class="task-detail">Fix spacing issues. Add loading states everywhere. Add error messages for failed uploads. Ensure all pages look clean at 1280px width. Test demo flow 3 times.</div>
+      </div>
+      <div class="task-hrs">2h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n5">2</div>
+      <div class="task-body">
+        <div class="task-title">Dockerfile — backend</div>
+        <div class="task-detail">Write backend/Dockerfile. Multi-stage build. Test locally with docker build + docker run. Confirm API works inside container.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n5">3</div>
+      <div class="task-body">
+        <div class="task-title">Deploy backend to Railway</div>
+        <div class="task-detail">Connect Railway to GitHub repo. Set env vars (DATABASE_URL, OPENAI_API_KEY, SECRET_KEY). Deploy. Test /health endpoint on live URL.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n5">4</div>
+      <div class="task-body">
+        <div class="task-title">Deploy frontend to Vercel</div>
+        <div class="task-detail">Connect Vercel to GitHub repo. Set NEXT_PUBLIC_API_URL to Railway backend URL. Deploy. Test full flow on live URLs.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n5">5</div>
+      <div class="task-body">
+        <div class="task-title">End-to-end test on live deployment</div>
+        <div class="task-detail">Run all 4 demo Terraform files through the live deployed app. Confirm scores match expectations. Fix any deployment-specific bugs.</div>
+      </div>
+      <div class="task-hrs">2.5h</div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);margin-bottom:6px">Day 5 deliverables</div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Live URL on Vercel accessible publicly</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Backend running on Railway</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Full demo flow works on live deployment</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 6 -->
+<div class="day-card">
+  <div class="day-header" style="background:#FCEBEB">
+    <div>
+      <div class="day-title"><span class="day-badge d6">Day 6</span>Demo prep + submission</div>
+      <div class="day-focus">Demo dataset · README · presentation · rehearsal</div>
+    </div>
+    <div class="day-hours">~8 hours</div>
+  </div>
+  <div class="day-body">
+    <div class="task-row">
+      <div class="task-num n6">1</div>
+      <div class="task-body">
+        <div class="task-title">Demo dataset — sample Terraform files</div>
+        <div class="task-detail">Create 4 demo .tf files covering the key scenarios: SSH open, IAM wildcard, multi-AZ removed, clean safe change. Pre-load them in the demo account so analysis history is populated.</div>
+      </div>
+      <div class="task-hrs">1h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n6">2</div>
+      <div class="task-body">
+        <div class="task-title">GitHub README</div>
+        <div class="task-detail">Write complete README.md: project description, architecture diagram, setup instructions, demo screenshots, tech stack. This is what judges read after watching the demo.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n6">3</div>
+      <div class="task-body">
+        <div class="task-title">5-minute presentation</div>
+        <div class="task-detail">Build slide deck: problem ($5.6M outages), solution (agent), demo flow, architecture, competitive advantage, future roadmap. Max 8 slides.</div>
+      </div>
+      <div class="task-hrs">2h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n6">4</div>
+      <div class="task-body">
+        <div class="task-title">Demo rehearsal</div>
+        <div class="task-detail">Run the full 5-minute demo 3 times. Time yourself. Know exactly which files to upload and in what order. Prepare answers for top 5 judge questions.</div>
+      </div>
+      <div class="task-hrs">2h</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num n6">5</div>
+      <div class="task-body">
+        <div class="task-title">Bug fixes from rehearsal</div>
+        <div class="task-detail">Fix anything that broke during demo run. Do not add new features. Stability only.</div>
+      </div>
+      <div class="task-hrs">1.5h</div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);margin-bottom:6px">Day 6 deliverables</div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">GitHub repo complete with README and docs</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">5-minute presentation ready</span></div>
+      <div class="deliverable-row"><i class="ti ti-check del-icon" aria-hidden="true"></i><span class="del-text">Demo rehearsed 3 times without errors</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 6.5 -->
+<div class="day-card">
+  <div class="day-header" style="background:#F1EFE8">
+    <div>
+      <div class="day-title"><span class="day-badge d65">Day 6.5</span>Submission day</div>
+      <div class="day-focus">Final checks · submit · present</div>
+    </div>
+    <div class="day-hours">~4 hours</div>
+  </div>
+  <div class="day-body">
+    <div class="task-row">
+      <div class="task-num" style="background:#D3D1C7;color:#444441">1</div>
+      <div class="task-body">
+        <div class="task-title">Final smoke test</div>
+        <div class="task-detail">Run full demo flow one more time on live deployment. Confirm Railway and Vercel are both up. Check Supabase connection is healthy.</div>
+      </div>
+      <div class="task-hrs">30min</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num" style="background:#D3D1C7;color:#444441">2</div>
+      <div class="task-body">
+        <div class="task-title">Submit to hackathon</div>
+        <div class="task-detail">Submit GitHub URL, live demo URL, and presentation. Double-check all submission requirements are met.</div>
+      </div>
+      <div class="task-hrs">30min</div>
+    </div>
+    <div class="task-row">
+      <div class="task-num" style="background:#D3D1C7;color:#444441">3</div>
+      <div class="task-body">
+        <div class="task-title">Present and answer questions</div>
+        <div class="task-detail">5-minute demo. Stay calm. Lead with the problem ($5.6M outages). Show BLOCK verdict first — it's the most dramatic. Let the product speak.</div>
+      </div>
+      <div class="task-hrs">3h</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-title">Cut list — if you fall behind</div>
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden">
+  <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:0.5px solid var(--color-border-tertiary)">
+    <div style="padding:10px 14px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);border-right:0.5px solid var(--color-border-tertiary)">Cut this (won't hurt demo)</div>
+    <div style="padding:10px 14px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary)">Never cut this</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr">
+    <div style="padding:12px 14px;border-right:0.5px solid var(--color-border-tertiary);font-size:12px;color:var(--color-text-secondary);line-height:1.8">
+      PDF export<br>History page filters<br>Register page (pre-create demo account)<br>ISO 27001 mapping (keep CIS + SOC2)<br>Cost calculator detail<br>Mobile responsiveness
+    </div>
+    <div style="padding:12px 14px;font-size:12px;color:var(--color-text-secondary);line-height:1.8">
+      Upload → analyze → results flow<br>BLOCK verdict on demo Terraform<br>Findings list with evidence<br>CIS compliance table<br>Dashboard with stats<br>Live deployment URL
+    </div>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,137 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.stack{font-family:var(--font-sans);font-size:14px;color:var(--color-text-primary)}
+.layer{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:12px;overflow:hidden}
+.layer-header{padding:10px 16px;display:flex;align-items:center;gap:10px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.layer-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-secondary)}
+.layer-name{font-size:14px;font-weight:500}
+.tech-row{display:grid;grid-template-columns:140px 1fr 1fr;gap:0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.tech-row:last-child{border-bottom:none}
+.tech-cell{padding:10px 14px;font-size:13px;color:var(--color-text-secondary);border-right:0.5px solid var(--color-border-tertiary)}
+.tech-cell:last-child{border-right:none}
+.tech-name{font-weight:500;color:var(--color-text-primary)}
+.tech-head{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);padding:6px 14px;background:var(--color-background-secondary);display:grid;grid-template-columns:140px 1fr 1fr;gap:0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.badge{display:inline-flex;font-size:11px;font-weight:500;padding:2px 8px;border-radius:99px}
+.b-blue{background:#E6F1FB;color:#0C447C}
+.b-green{background:#EAF3DE;color:#27500A}
+.b-amber{background:#FAEEDA;color:#633806}
+</style>
+<div class="stack">
+
+<div class="layer">
+<div class="layer-header"><i class="ti ti-layout" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i><span class="layer-name">Frontend</span></div>
+<div class="tech-head"><span>Technology</span><span>Why chosen</span><span>Trade-off considered</span></div>
+<div class="tech-row">
+<div class="tech-cell tech-name">Next.js 14</div>
+<div class="tech-cell">App Router, SSR for fast initial load, API routes for BFF pattern</div>
+<div class="tech-cell">Nuxt.js considered — Next.js has stronger enterprise ecosystem and AWS Amplify support</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">TypeScript</div>
+<div class="tech-cell">Type safety across API contracts, reduces runtime errors in complex risk report objects</div>
+<div class="tech-cell">Adds ~10% dev overhead upfront; saves 30%+ debugging time at scale</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">TailwindCSS</div>
+<div class="tech-cell">Rapid enterprise UI development, consistent design tokens, no CSS bloat</div>
+<div class="tech-cell">MUI considered — Tailwind gives more control over enterprise SaaS aesthetics</div>
+</div>
+</div>
+
+<div class="layer">
+<div class="layer-header"><i class="ti ti-server" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i><span class="layer-name">Backend</span></div>
+<div class="tech-head"><span>Technology</span><span>Why chosen</span><span>Trade-off considered</span></div>
+<div class="tech-row">
+<div class="tech-cell tech-name">FastAPI</div>
+<div class="tech-cell">Async-first Python, automatic OpenAPI docs, Pydantic validation, high throughput</div>
+<div class="tech-cell">Django REST considered — FastAPI is 2–3× faster for I/O-bound AI workloads</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">Python 3.11</div>
+<div class="tech-cell">Best AI/ML ecosystem (LangChain, OpenAI SDK), strong Terraform parsing libraries</div>
+<div class="tech-cell">Node.js considered — Python wins for AI tooling depth and cloud SDK maturity</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">Celery + SQS</div>
+<div class="tech-cell">Async job processing for large files; decouples upload from analysis latency</div>
+<div class="tech-cell">Synchronous processing considered — fails at scale and blocks UI for 20–30s analyses</div>
+</div>
+</div>
+
+<div class="layer">
+<div class="layer-header"><i class="ti ti-database" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i><span class="layer-name">Database</span></div>
+<div class="tech-head"><span>Technology</span><span>Why chosen</span><span>Trade-off considered</span></div>
+<div class="tech-row">
+<div class="tech-cell tech-name">PostgreSQL (RDS)</div>
+<div class="tech-cell">JSONB for flexible risk report storage, full ACID compliance, mature audit logging</div>
+<div class="tech-cell">DynamoDB considered — relational joins needed for org/user/analysis reporting hierarchy</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">SQLAlchemy + Alembic</div>
+<div class="tech-cell">ORM with migration support, type-safe queries, works with FastAPI natively</div>
+<div class="tech-cell">Raw SQL considered — ORM adds safety for team development, minimal performance cost</div>
+</div>
+</div>
+
+<div class="layer">
+<div class="layer-header"><i class="ti ti-brand-aws" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i><span class="layer-name">Cloud — AWS</span></div>
+<div class="tech-head"><span>Service</span><span>Purpose</span><span>Alternative / note</span></div>
+<div class="tech-row">
+<div class="tech-cell tech-name">ECS Fargate</div>
+<div class="tech-cell">Serverless containers — no EC2 management, auto-scaling, pay-per-use</div>
+<div class="tech-cell">EKS considered — overkill for MVP; Fargate is faster to deploy and cheaper at low scale</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">RDS Multi-AZ</div>
+<div class="tech-cell">99.95% availability SLA, automatic failover, encrypted at rest</div>
+<div class="tech-cell">Single-AZ for hackathon is fine — Multi-AZ is the enterprise production target</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">S3</div>
+<div class="tech-cell">Upload storage with 24h TTL lifecycle policy, report export storage, versioning</div>
+<div class="tech-cell">Files never stored permanently — deleted after analysis to protect customer IP</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">CloudWatch</div>
+<div class="tech-cell">Logs, metrics, custom dashboards, alarms for API error rate and latency</div>
+<div class="tech-cell">Datadog considered — CloudWatch is native, zero cost for MVP</div>
+</div>
+</div>
+
+<div class="layer">
+<div class="layer-header"><i class="ti ti-brain" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i><span class="layer-name">AI layer</span></div>
+<div class="tech-head"><span>Technology</span><span>Why chosen</span><span>Trade-off considered</span></div>
+<div class="tech-row">
+<div class="tech-cell tech-name">OpenAI GPT-4o</div>
+<div class="tech-cell">Best reasoning for multi-step cloud architecture analysis, structured JSON output, function calling</div>
+<div class="tech-cell">Azure OpenAI is the enterprise swap — same API, data residency guarantees for regulated industries</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">Structured outputs</div>
+<div class="tech-cell">JSON schema enforcement on AI responses — guarantees risk score, findings array, and verdict fields</div>
+<div class="tech-cell">Free-text parsing considered — structured outputs eliminate parsing failures in production</div>
+</div>
+</div>
+
+<div class="layer">
+<div class="layer-header"><i class="ti ti-git-branch" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary)"></i><span class="layer-name">DevOps</span></div>
+<div class="tech-head"><span>Technology</span><span>Purpose</span><span>Note</span></div>
+<div class="tech-row">
+<div class="tech-cell tech-name">Docker</div>
+<div class="tech-cell">Consistent environments: dev → CI → production. One Dockerfile per service.</div>
+<div class="tech-cell">Multi-stage builds keep images under 200MB</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">Terraform</div>
+<div class="tech-cell">Infrastructure as code for all AWS resources — VPC, ECS, RDS, S3, IAM</div>
+<div class="tech-cell">We use Terraform to deploy a tool that analyzes Terraform. Intentional dogfooding.</div>
+</div>
+<div class="tech-row">
+<div class="tech-cell tech-name">GitHub Actions</div>
+<div class="tech-cell">CI/CD pipeline: test → build → push to ECR → deploy to ECS on merge to main</div>
+<div class="tech-cell">Zero additional cost for open-source / hackathon repos</div>
+</div>
+</div>
+
+</div>

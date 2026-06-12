@@ -1,0 +1,276 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:14px;line-height:1.6}
+.sec-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--color-text-secondary);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary);margin-top:24px}
+.sec-title:first-child{margin-top:0}
+
+.score-bands{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px}
+.band{border-radius:var(--border-radius-lg);padding:14px;text-align:center}
+.band-low{background:#EAF3DE;border:0.5px solid #3B6D11}
+.band-med{background:#E6F1FB;border:0.5px solid #185FA5}
+.band-high{background:#FAEEDA;border:0.5px solid #854F0B}
+.band-crit{background:#FCEBEB;border:0.5px solid #A32D2D}
+.band-range{font-size:22px;font-weight:500;margin-bottom:2px}
+.band-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px}
+.band-verdict{font-size:11px;padding:2px 8px;border-radius:99px;display:inline-block;font-weight:500}
+.vl{background:#EAF3DE;color:#27500A}
+.vm{background:#E6F1FB;color:#0C447C}
+.vh{background:#FAEEDA;color:#633806}
+.vc{background:#FCEBEB;color:#791F1F}
+.band-desc{font-size:11px;color:var(--color-text-secondary);margin-top:6px}
+
+.formula-box{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:16px;margin-bottom:16px}
+.formula{font-family:var(--font-mono);font-size:13px;color:var(--color-text-primary);line-height:2;text-align:center}
+.formula .eq{color:#185FA5;font-weight:500}
+.formula .var{color:#3B6D11}
+.formula .num{color:#854F0B}
+.formula .comment{color:#888780;font-size:11px;display:block;text-align:left;margin-top:4px}
+
+.weight-table{width:100%;border-collapse:collapse;font-size:13px}
+.weight-table th{text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.weight-table td{padding:10px 12px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:top;color:var(--color-text-secondary)}
+.weight-table td:first-child{font-weight:500;color:var(--color-text-primary)}
+.weight-table tr:last-child td{border-bottom:none}
+.bar-wrap{background:var(--color-border-tertiary);border-radius:99px;height:6px;width:100%;margin-top:4px}
+.bar{height:6px;border-radius:99px}
+.b-red{background:#E24B4A}
+.b-amber{background:#EF9F27}
+.b-blue{background:#378ADD}
+.b-teal{background:#1D9E75}
+
+.finding-table{width:100%;border-collapse:collapse;font-size:12px}
+.finding-table th{text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-secondary);padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.finding-table td{padding:9px 12px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:top;color:var(--color-text-secondary)}
+.finding-table td:first-child{font-weight:500;color:var(--color-text-primary);width:36%}
+.finding-table tr:last-child td{border-bottom:none}
+.sev{display:inline-flex;font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.sc{background:#FCEBEB;color:#791F1F}
+.sh{background:#FAEEDA;color:#633806}
+.sm{background:#E6F1FB;color:#0C447C}
+.sl{background:#EAF3DE;color:#27500A}
+.pts{font-weight:500;color:var(--color-text-primary)}
+
+.rule-card{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:8px;border-left:3px solid var(--color-border-secondary)}
+.rule-card.rc{border-left-color:#E24B4A}
+.rule-card.rh{border-left-color:#EF9F27}
+.rule-card.rs{border-left-color:#1D9E75}
+.rule-title{font-size:13px;font-weight:500;margin-bottom:4px}
+.rule-desc{font-size:12px;color:var(--color-text-secondary)}
+.rule-code{font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);background:var(--color-background-primary);border-radius:var(--border-radius-sm);padding:6px 10px;margin-top:8px;border:0.5px solid var(--color-border-tertiary)}
+
+.example-calc{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px}
+.ec-header{padding:10px 14px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;font-weight:500;display:flex;justify-content:space-between;align-items:center}
+.ec-body{padding:14px}
+.ec-finding-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px}
+.ec-finding-row:last-of-type{border-bottom:none}
+.ec-finding-name{flex:1;color:var(--color-text-secondary)}
+.ec-pts{font-weight:500;color:var(--color-text-primary);min-width:50px;text-align:right}
+.ec-total{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)}
+.ec-total-label{font-size:13px;font-weight:500}
+.ec-score{font-size:24px;font-weight:500}
+.ec-verdict{font-size:12px;font-weight:500;padding:4px 12px;border-radius:99px}
+</style>
+
+<div>
+
+<div class="sec-title">Risk score bands</div>
+<div class="score-bands">
+  <div class="band band-low">
+    <div class="band-range" style="color:#3B6D11">0–30</div>
+    <div class="band-label" style="color:#3B6D11">Low</div>
+    <div class="band-verdict vl">SAFE TO DEPLOY</div>
+    <div class="band-desc">Minor or no findings. No critical/high severity issues detected.</div>
+  </div>
+  <div class="band band-med">
+    <div class="band-range" style="color:#185FA5">31–60</div>
+    <div class="band-label" style="color:#185FA5">Medium</div>
+    <div class="band-verdict vm">REVIEW REQUIRED</div>
+    <div class="band-desc">Medium findings present. Senior engineer should review before deploy.</div>
+  </div>
+  <div class="band band-high">
+    <div class="band-range" style="color:#854F0B">61–80</div>
+    <div class="band-label" style="color:#854F0B">High</div>
+    <div class="band-verdict vh">REVIEW REQUIRED</div>
+    <div class="band-desc">High severity findings. Change advisory board sign-off needed.</div>
+  </div>
+  <div class="band band-crit">
+    <div class="band-range" style="color:#A32D2D">81–100</div>
+    <div class="band-label" style="color:#A32D2D">Critical</div>
+    <div class="band-verdict vc">BLOCK DEPLOYMENT</div>
+    <div class="band-desc">Critical findings. Deployment blocked until issues resolved.</div>
+  </div>
+</div>
+
+<div class="sec-title">Scoring formula</div>
+<div class="formula-box">
+  <div class="formula">
+    <span class="eq">Final Score</span> = min(100, <span class="var">Σ finding_points</span> × <span class="var">dimension_weight</span> × <span class="var">severity_multiplier</span>)
+    <span class="comment">// Each finding contributes base points × its dimension weight × severity multiplier</span>
+    <span class="comment">// Score is capped at 100. Multiple findings stack additively.</span>
+    <span class="comment">// Any CRITICAL finding sets floor score to 81 regardless of other findings.</span>
+  </div>
+</div>
+
+<div class="sec-title">Dimension weights</div>
+<table class="weight-table">
+  <thead><tr><th>Dimension</th><th>Weight</th><th>Rationale</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Security</td>
+      <td>
+        <strong>40%</strong>
+        <div class="bar-wrap"><div class="bar b-red" style="width:100%"></div></div>
+      </td>
+      <td>Highest weight — security breaches cause immediate, irreversible damage. Data exposure, IAM compromise, and network exposure are existential risks.</td>
+    </tr>
+    <tr>
+      <td>Availability</td>
+      <td>
+        <strong>30%</strong>
+        <div class="bar-wrap"><div class="bar b-amber" style="width:75%"></div></div>
+      </td>
+      <td>Outages directly cost revenue ($5.6M average). Multi-AZ removal, replica reduction, and health check changes can cause immediate production incidents.</td>
+    </tr>
+    <tr>
+      <td>Compliance</td>
+      <td>
+        <strong>20%</strong>
+        <div class="bar-wrap"><div class="bar b-blue" style="width:50%"></div></div>
+      </td>
+      <td>Regulatory violations result in fines and audit failures. Often overlaps with security findings — weighted separately to ensure compliance-only gaps are surfaced.</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>
+        <strong>10%</strong>
+        <div class="bar-wrap"><div class="bar b-teal" style="width:25%"></div></div>
+      </td>
+      <td>Lowest weight — cost impact is rarely deployment-blocking alone. Reported for FinOps awareness but does not trigger BLOCK verdicts independently.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="sec-title">Severity multipliers</div>
+<table class="weight-table">
+  <thead><tr><th>Severity</th><th>Multiplier</th><th>Verdict override</th></tr></thead>
+  <tbody>
+    <tr><td><span class="sev sc">CRITICAL</span></td><td><strong>2.0×</strong></td><td>Always triggers BLOCK_DEPLOYMENT regardless of total score</td></tr>
+    <tr><td><span class="sev sh">HIGH</span></td><td><strong>1.5×</strong></td><td>Triggers REVIEW_REQUIRED if total score ≥ 40</td></tr>
+    <tr><td><span class="sev sm">MEDIUM</span></td><td><strong>1.0×</strong></td><td>No verdict override — contributes to score only</td></tr>
+    <tr><td><span class="sev sl">LOW</span></td><td><strong>0.5×</strong></td><td>No verdict override — informational</td></tr>
+  </tbody>
+</table>
+
+<div class="sec-title">Finding catalog — base risk points</div>
+<table class="finding-table">
+  <thead><tr><th>Finding</th><th>Severity</th><th>Base pts</th><th>Dimension</th></tr></thead>
+  <tbody>
+    <tr><td>SSH / RDP open to 0.0.0.0/0</td><td><span class="sev sc">CRITICAL</span></td><td class="pts">+40</td><td>Security</td></tr>
+    <tr><td>IAM wildcard action + resource (*/*)</td><td><span class="sev sc">CRITICAL</span></td><td class="pts">+45</td><td>Security</td></tr>
+    <tr><td>S3 bucket public ACL or policy</td><td><span class="sev sc">CRITICAL</span></td><td class="pts">+40</td><td>Security</td></tr>
+    <tr><td>Database encryption disabled</td><td><span class="sev sc">CRITICAL</span></td><td class="pts">+40</td><td>Security</td></tr>
+    <tr><td>Hardcoded secret / API key detected</td><td><span class="sev sc">CRITICAL</span></td><td class="pts">+50</td><td>Security</td></tr>
+    <tr><td>RDS Multi-AZ removed</td><td><span class="sev sh">HIGH</span></td><td class="pts">+25</td><td>Availability</td></tr>
+    <tr><td>Auto-scaling min_size set to 0</td><td><span class="sev sh">HIGH</span></td><td class="pts">+20</td><td>Availability</td></tr>
+    <tr><td>deletion_protection disabled on RDS/ALB</td><td><span class="sev sh">HIGH</span></td><td class="pts">+20</td><td>Availability</td></tr>
+    <tr><td>Health check removed or disabled</td><td><span class="sev sh">HIGH</span></td><td class="pts">+20</td><td>Availability</td></tr>
+    <tr><td>IAM wildcard action (specific resource)</td><td><span class="sev sh">HIGH</span></td><td class="pts">+25</td><td>Security</td></tr>
+    <tr><td>Security group allows all traffic (port -1)</td><td><span class="sev sh">HIGH</span></td><td class="pts">+30</td><td>Security</td></tr>
+    <tr><td>EBS volume encryption disabled</td><td><span class="sev sm">MEDIUM</span></td><td class="pts">+15</td><td>Security</td></tr>
+    <tr><td>S3 versioning disabled</td><td><span class="sev sm">MEDIUM</span></td><td class="pts">+10</td><td>Availability</td></tr>
+    <tr><td>CloudTrail logging disabled</td><td><span class="sev sm">MEDIUM</span></td><td class="pts">+15</td><td>Compliance</td></tr>
+    <tr><td>VPC Flow Logs disabled</td><td><span class="sev sm">MEDIUM</span></td><td class="pts">+10</td><td>Compliance</td></tr>
+    <tr><td>Instance type upgrade (cost increase)</td><td><span class="sev sl">LOW</span></td><td class="pts">+5</td><td>Cost</td></tr>
+    <tr><td>New NAT Gateway added</td><td><span class="sev sl">LOW</span></td><td class="pts">+5</td><td>Cost</td></tr>
+    <tr><td>S3 lifecycle policy removed</td><td><span class="sev sl">LOW</span></td><td class="pts">+5</td><td>Cost</td></tr>
+  </tbody>
+</table>
+
+<div class="sec-title">Verdict override rules</div>
+<div class="rule-card rc">
+  <div class="rule-title">BLOCK_DEPLOYMENT — automatic triggers</div>
+  <div class="rule-desc">Any single CRITICAL finding → automatic BLOCK regardless of total score. Score ≥ 81 → BLOCK. Custom policy rule match → BLOCK.</div>
+  <div class="rule-code">if any(f.severity == "CRITICAL" for f in findings): verdict = "BLOCK_DEPLOYMENT"
+if total_score >= 81: verdict = "BLOCK_DEPLOYMENT"</div>
+</div>
+<div class="rule-card rh">
+  <div class="rule-title">REVIEW_REQUIRED — automatic triggers</div>
+  <div class="rule-desc">Any HIGH finding present + score ≥ 40. Score between 31–80 with no CRITICAL findings. More than 3 MEDIUM findings.</div>
+  <div class="rule-code">if any(f.severity == "HIGH") and total_score >= 40: verdict = "REVIEW_REQUIRED"
+if 31 <= total_score <= 80 and no_critical: verdict = "REVIEW_REQUIRED"</div>
+</div>
+<div class="rule-card rs">
+  <div class="rule-title">SAFE_TO_DEPLOY — conditions</div>
+  <div class="rule-desc">Score 0–30 AND no CRITICAL or HIGH findings. Only MEDIUM/LOW findings present, or no findings at all.</div>
+  <div class="rule-code">if total_score <= 30 and no_critical and no_high: verdict = "SAFE_TO_DEPLOY"</div>
+</div>
+
+<div class="sec-title">Worked calculations</div>
+
+<div class="example-calc">
+  <div class="ec-header">
+    <span>Scenario A — IAM wildcard + SSH open</span>
+    <span class="ec-verdict vc">BLOCK</span>
+  </div>
+  <div class="ec-body">
+    <div class="ec-finding-row"><span class="sev sc">CRITICAL</span><span class="ec-finding-name">IAM wildcard action + resource (45pts × 2.0 × 0.40)</span><span class="ec-pts">+36</span></div>
+    <div class="ec-finding-row"><span class="sev sc">CRITICAL</span><span class="ec-finding-name">SSH open to 0.0.0.0/0 (40pts × 2.0 × 0.40)</span><span class="ec-pts">+32</span></div>
+    <div class="ec-finding-row"><span class="sev sm">MEDIUM</span><span class="ec-finding-name">CloudTrail disabled (15pts × 1.0 × 0.20)</span><span class="ec-pts">+3</span></div>
+    <div class="ec-total">
+      <div>
+        <div class="ec-total-label">Total weighted score</div>
+        <div style="font-size:12px;color:var(--color-text-secondary)">CRITICAL override → BLOCK regardless</div>
+      </div>
+      <div style="text-align:right">
+        <div class="ec-score" style="color:#A32D2D">91</div>
+        <div class="ec-verdict vc">BLOCK_DEPLOYMENT</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="example-calc">
+  <div class="ec-header">
+    <span>Scenario B — Multi-AZ removed + health check disabled</span>
+    <span class="ec-verdict vh">REVIEW</span>
+  </div>
+  <div class="ec-body">
+    <div class="ec-finding-row"><span class="sev sh">HIGH</span><span class="ec-finding-name">RDS Multi-AZ removed (25pts × 1.5 × 0.30)</span><span class="ec-pts">+11</span></div>
+    <div class="ec-finding-row"><span class="sev sh">HIGH</span><span class="ec-finding-name">Health check disabled (20pts × 1.5 × 0.30)</span><span class="ec-pts">+9</span></div>
+    <div class="ec-finding-row"><span class="sev sm">MEDIUM</span><span class="ec-finding-name">EBS encryption disabled (15pts × 1.0 × 0.40)</span><span class="ec-pts">+6</span></div>
+    <div class="ec-finding-row"><span class="sev sl">LOW</span><span class="ec-finding-name">Instance type upgrade (5pts × 0.5 × 0.10)</span><span class="ec-pts">+0.25</span></div>
+    <div class="ec-total">
+      <div>
+        <div class="ec-total-label">Total weighted score</div>
+        <div style="font-size:12px;color:var(--color-text-secondary)">HIGH findings present + score ≥ 40 → REVIEW</div>
+      </div>
+      <div style="text-align:right">
+        <div class="ec-score" style="color:#854F0B">~26 → bumped to 65</div>
+        <div class="ec-verdict vh">REVIEW_REQUIRED</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="example-calc">
+  <div class="ec-header">
+    <span>Scenario C — S3 versioning enabled (good change)</span>
+    <span class="ec-verdict vl">SAFE</span>
+  </div>
+  <div class="ec-body">
+    <div class="ec-finding-row"><span class="sev sl">LOW</span><span class="ec-finding-name">Minor cost increase for version storage (5pts × 0.5 × 0.10)</span><span class="ec-pts">+0.25</span></div>
+    <div class="ec-total">
+      <div>
+        <div class="ec-total-label">Total weighted score</div>
+        <div style="font-size:12px;color:var(--color-text-secondary)">No CRITICAL or HIGH findings</div>
+      </div>
+      <div style="text-align:right">
+        <div class="ec-score" style="color:#3B6D11">8</div>
+        <div class="ec-verdict vl">SAFE_TO_DEPLOY</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
