@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL = "https://ai-change-risk-agent-production-c11b.up.railway.app";
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
