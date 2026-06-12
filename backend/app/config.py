@@ -3,7 +3,7 @@ from typing import List
 
 class Settings(BaseSettings):
     # Database
-    DATABASE_URL: str = "postgresql://user:password@localhost:5432/riskagent"
+    DATABASE_URL: str = "postgresql://postgres:aichangeriskagent26@db.maanfscmhwevqnfrmfwy.supabase.co:5432/postgres?sslmode=require"
 
     # OpenAI
     OPENAI_API_KEY: str = ""
